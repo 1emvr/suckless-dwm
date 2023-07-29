@@ -1,0 +1,15 @@
+config.h:62:20: error: array type has incomplete element type ‘const char *[]’
+   62 | static const char *brightness[2][] = {{"xbacklight", "-inc", "5%", NULL},{"xbacklight", "-dec", "5%", NULL}};
+      |                    ^~~~~~~~~~
+config.h:62:20: note: declaration of ‘brightness’ as multidimensional array must have bounds for all dimensions except the first
+config.h:66:3: error: extra brace group at end of initializer
+   66 |   {0,   XF86XK_MonBrightnessDown,       spawn,          {.v=brightness[1]},
+      |   ^
+config.h:66:3: note: (near initialization for ‘keys[0]’)
+config.h:66:57: error: extra brace group at end of initializer
+   66 |   {0,   XF86XK_MonBrightnessDown,       spawn,          {.v=brightness[1]},
+      |                                                         ^
+config.h:66:57: note: (near initialization for ‘keys[0]’)
+config.h:68:1: error: expected expression before ‘static’
+   68 | static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+      | ^~~~~~

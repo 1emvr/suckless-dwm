@@ -1,0 +1,4 @@
+curl wttr.in
+acpi -b
+amixer get Master
+
