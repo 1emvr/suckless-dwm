@@ -1,1 +1,2 @@
-print("hello lemur from sub init.lua")
+require("lemur.remap")
+require("lemur.options")
