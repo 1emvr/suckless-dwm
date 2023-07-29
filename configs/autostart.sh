@@ -9,12 +9,12 @@ battery() {
 }
 
 memory() {
-	mem=$(free | awk '/Mem/ {printf "%d MiB/%d MiB\n", $3 / 1024.0, $2 / 1024.0}')
+	mem="$(free | awk '/Mem/ {printf "%d MiB/%d MiB\n", $3 / 1024.0, $2 / 1024.0}')"
 	printf "Mem: %s" "$mem"
 }
 
 cpu() {
-	cpu=$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+	cpu="$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')"
 	printf "Cpu: %s " "$cpu"
 }
 
