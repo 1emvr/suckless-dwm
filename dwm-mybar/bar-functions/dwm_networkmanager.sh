@@ -17,9 +17,9 @@ dwm_networkmanager () {
 
     if [ "$IDENTIFIER" = "unicode" ]; then
 	    if [ "$CONNAME" = "" ]; then
-		    export __DWM_BAR_NETWORKMANAGER__="${SEP1}󰈀 ${PRIVATE} ${PUBLIC}${SEP2}"
+		    export __DWM_BAR_NETWORKMANAGER__="${SEP1}󰈀 ${PRIVATE}${SEP2}"
 	    else
-		    export __DWM_BAR_NETWORKMANAGER__="${SEP1} ${PRIVATE} ${PUBLIC}${SEP2}"
+		    export __DWM_BAR_NETWORKMANAGER__="${SEP1} ${PRIVATE}${SEP2}"
 	    fi
     else
 	    export __DWM_BAR_NETWORKMANAGER__="${SEP1}NET ${CONNAME} ${PRIVATE} ${PUBLIC}${SEP2}"
