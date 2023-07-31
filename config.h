@@ -28,9 +28,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      		instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",     		NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",  		NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -65,9 +65,14 @@ static const char *miccmd[] 		= { "amixer", "set", "Capture", "toggle", NULL };
 static const char *brupcmd[] 		= { "sudo", "xbacklight", "-inc", "10", NULL };
 static const char *brdowncmd[] 		= { "sudo", "xbacklight", "-dec", "10", NULL };
 
-//sstatic const char *dmenucmd[] 		= { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *dmenucmd[] 		= { "rofi", "-show", "drun" };
 static const char *termcmd[]  		= { "kitty", NULL };
+
+static const char *thunar[] 		= { "thunar" };
+static const char *chromium[] 		= { "chromium" };
+static const char *discord[] 		= { "discord" };
+static const char *burpsuite[] 		= { "burpsuite" };
+static const char *flameshot[] 		= { "flameshot", "gui" };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -98,22 +103,22 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 
-	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
-	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
-	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
-	{ 0, XF86XK_MonBrightnessUp, spawn, {.v = brupcmd} },
-	{ 0, XF86XK_MonBrightnessDown, spawn, {.v = brdowncmd} },
+	{ 0, XF86XK_AudioMute, 			   spawn, 	   {.v = mutecmd } },
+	{ 0, XF86XK_AudioLowerVolume, 		   spawn, 	   {.v = voldowncmd } },
+	{ 0, XF86XK_AudioRaiseVolume, 		   spawn, 	   {.v = volupcmd } },
+	{ 0, XF86XK_MonBrightnessUp, 		   spawn, 	   {.v = brupcmd} },
+	{ 0, XF86XK_MonBrightnessDown, 		   spawn, 	   {.v = brdowncmd} },
 
 	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+		TAGKEYS(                        XK_2,                      1)
+		TAGKEYS(                        XK_3,                      2)
+		TAGKEYS(                        XK_4,                      3)
+		TAGKEYS(                        XK_5,                      4)
+		TAGKEYS(                        XK_6,                      5)
+		TAGKEYS(                        XK_7,                      6)
+		TAGKEYS(                        XK_8,                      7)
+		TAGKEYS(                        XK_9,                      8)
+		{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 };
 
 /* button definitions */
