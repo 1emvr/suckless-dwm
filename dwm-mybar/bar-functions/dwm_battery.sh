@@ -14,7 +14,7 @@ dwm_battery () {
         if [ "$STATUS" = "Charging" ]; then
             printf "  %s%% %s" "$CHARGE" "$STATUS"
 
-	elif [ "$STATUS" = "Not charging" ]; then
+	elif [ "$STATUS" = "Full" ]; then
             printf "  %s%% %s" "$CHARGE" "$STATUS"
 
         else
