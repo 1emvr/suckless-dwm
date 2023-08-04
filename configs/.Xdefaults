@@ -1,0 +1,25 @@
+URxvt*transparent: true
+URxvt*tintColor: Black
+URxvt.internalBorder: 15
+URxvt*shading: 40
+URxvt*saveLines: 12000
+URxvt*foreground: White
+URxvt*background: Black
+URxvt*font: xft:Cousine Nerd Font:pixelsize=12:antialias=true:hinting=true
+URxvt*boldFont: xft:Cousine Nerd Font:bold:pixelsize=12:antialias=true:hinting=true
+URxvt*scrollBar: false
+URxvt*scrollBar_right: false
+URxvt*scrollstyle: rxvt
+URxvt.cursorBlink: true
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+URxvt.urlButton: 1

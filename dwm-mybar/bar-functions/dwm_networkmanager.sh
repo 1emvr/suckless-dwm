@@ -7,19 +7,16 @@
 # Dependencies: NetworkManager, curl
 
 dwm_networkmanager () {
-    CONNAME=$(nmcli -a | grep 'Wired connection' | awk 'NR==1{print $1}')
+    CONNAME=$(ip a | grep 'wlan0' | tr '\n' ' ' | awk 'NR==1{print $15}')
     if [ "$CONNAME" = "" ]; then
-        CONNAME=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -c 5-)
+        CONNAME=$(󰖪 )
     fi
-
-    PRIVATE=$(nmcli -a | grep 'inet4 192' | awk '{print $2}')
-    PUBLIC=$(curl -s https://ipinfo.io/ip)
 
     if [ "$IDENTIFIER" = "unicode" ]; then
 	    if [ "$CONNAME" = "" ]; then
-		    export __DWM_BAR_NETWORKMANAGER__="${SEP1}󰈀 ${PRIVATE}${SEP2}"
+		    export __DWM_BAR_NETWORKMANAGER__="${SEP1}󰈀 ${CONNAME}${SEP2}"
 	    else
-		    export __DWM_BAR_NETWORKMANAGER__="${SEP1} ${PRIVATE}${SEP2}"
+		    export __DWM_BAR_NETWORKMANAGER__="${SEP1} ${CONNAME}${SEP2}"
 	    fi
     else
 	    export __DWM_BAR_NETWORKMANAGER__="${SEP1}NET ${CONNAME} ${PRIVATE} ${PUBLIC}${SEP2}"

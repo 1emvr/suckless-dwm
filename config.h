@@ -1,19 +1,18 @@
 /* See LICENSE file for copyright and license details. */
-#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int gappx     = 10;
+static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char fonts[]          = "Cousine Nerd Font 12";
-static const char dmenufont[]       = "monospace:size=14";
+static const char *fonts[]          = { "Cousine Nerd Font:size=12" };
+static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_cyan[]        = "#00B3FF";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -21,16 +20,16 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "󰣇", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { " ", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      		instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     		NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  		NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -41,9 +40,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "",      tile },    /* first entry is default */
-	{ "",      NULL },    /* no layout function means floating behavior */
-	{ "",      monocle },
+	{ "[]=",      tile },    /* first entry is default */
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[M]",      monocle },
 };
 
 /* key definitions */
@@ -57,22 +56,10 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-static const char *mutecmd[] 		= { "amixer", "-q", "set", "Master", "toggle", NULL };
-static const char *volupcmd[] 		= { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
-static const char *voldowncmd[] 	= { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
-static const char *miccmd[] 		= { "amixer", "set", "Capture", "toggle", NULL };
-
-static const char *brupcmd[] 		= { "sudo", "xbacklight", "-inc", "10", NULL };
-static const char *brdowncmd[] 		= { "sudo", "xbacklight", "-dec", "10", NULL };
-
-static const char *dmenucmd[] 		= { "rofi", "-show", "drun" };
-static const char *termcmd[]  		= { "kitty", NULL };
-
-static const char *thunar[] 		= { "thunar" };
-static const char *chromium[] 		= { "chromium" };
-static const char *discord[] 		= { "discord" };
-static const char *burpsuite[] 		= { "burpsuite" };
-static const char *flameshot[] 		= { "flameshot", "gui" };
+/* commands */
+// static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenu_font, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "rofi", "-show", "drun" };
+static const char *termcmd[]  = { "urxvt", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -103,23 +90,16 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-
-	{ 0, XF86XK_AudioMute, 			   spawn, 	   {.v = mutecmd } },
-	{ 0, XF86XK_AudioLowerVolume, 		   spawn, 	   {.v = voldowncmd } },
-	{ 0, XF86XK_AudioRaiseVolume, 		   spawn, 	   {.v = volupcmd } },
-	{ 0, XF86XK_MonBrightnessUp, 		   spawn, 	   {.v = brupcmd} },
-	{ 0, XF86XK_MonBrightnessDown, 		   spawn, 	   {.v = brdowncmd} },
-
 	TAGKEYS(                        XK_1,                      0)
-		TAGKEYS(                        XK_2,                      1)
-		TAGKEYS(                        XK_3,                      2)
-		TAGKEYS(                        XK_4,                      3)
-		TAGKEYS(                        XK_5,                      4)
-		TAGKEYS(                        XK_6,                      5)
-		TAGKEYS(                        XK_7,                      6)
-		TAGKEYS(                        XK_8,                      7)
-		TAGKEYS(                        XK_9,                      8)
-		{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+	TAGKEYS(                        XK_2,                      1)
+	TAGKEYS(                        XK_3,                      2)
+	TAGKEYS(                        XK_4,                      3)
+	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 };
 
 /* button definitions */
