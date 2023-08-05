@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
@@ -61,8 +62,20 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "rofi", "-show", "drun" };
 static const char *termcmd[]  = { "urxvt", NULL };
 
+static const char *upvol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "+5%", NULL };
+static const char *downvol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *mutevol[] = {"/usr/bin/pactl", "set-sink-mute", "0", "toggle", NULL };
+
+static const char *brightnessup[] = {"sudo", "xbacklight", "-inc", "5", NULL };
+static const char *brightnessdown[] = {"sudo", "xbacklight", "-dec", "5", NULL };
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ 0,       XF86XK_AudioLowerVolume,  	   spawn, 	   {.v = downvol} },
+	{ 0,       XF86XK_AudioRaiseVolume,  	   spawn, 	   {.v = upvol} },
+	{ 0,       XF86XK_AudioMute,         	   spawn, 	   {.v = mutevol} },
+	{ 0,       XF86XK_MonBrightnessUp,   	   spawn, 	   {.v = brightnessup} },
+	{ 0,       XF86XK_MonBrightnessDown, 	   spawn,  	   {.v = brightnessdown} },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
