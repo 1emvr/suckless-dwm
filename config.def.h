@@ -30,7 +30,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	//{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -62,12 +62,15 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "rofi", "-show", "drun" };
 static const char *termcmd[]  = { "urxvt", NULL };
 
-static const char *upvol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "+5%", NULL };
-static const char *downvol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "-5%", NULL };
-static const char *mutevol[] = {"/usr/bin/pactl", "set-sink-mute", "0", "toggle", NULL };
+static const char *upvol[] = { "amixer", "sset", "Master", "5%+", NULL };
+static const char *downvol[] = { "amixer", "sset", "Master", "5%-", NULL };
+static const char *mutevol[] = {"amixer", "sset", "Master", "1+", "toggle", NULL };
 
 static const char *brightnessup[] = {"sudo", "xbacklight", "-inc", "5", NULL };
 static const char *brightnessdown[] = {"sudo", "xbacklight", "-dec", "5", NULL };
+
+static const char *flameshot[] = { "flameshot", "gui", NULL };
+static const char *firefox[] = { "firefox", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -76,6 +79,8 @@ static const Key keys[] = {
 	{ 0,       XF86XK_AudioMute,         	   spawn, 	   {.v = mutevol} },
 	{ 0,       XF86XK_MonBrightnessUp,   	   spawn, 	   {.v = brightnessup} },
 	{ 0,       XF86XK_MonBrightnessDown, 	   spawn,  	   {.v = brightnessdown} },
+	{ MODKEY,  XK_Print, 			   spawn, 	   {.v = flameshot}},
+	{ MODKEY,  XK_f, 			   spawn, 	   {.v = firefox}},
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -89,7 +94,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
