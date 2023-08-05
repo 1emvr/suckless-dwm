@@ -7,7 +7,7 @@ static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Cousine Nerd Font:size=12" };
+static const char *fonts[]          = { "Cousine Nerd Font:size=14" };
 static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -71,6 +71,7 @@ static const char *brightnessdown[] = {"sudo", "xbacklight", "-dec", "5", NULL }
 
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 static const char *firefox[] = { "firefox", NULL };
+static const char *ranger[] = { "urxvt", "-e", "ranger", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -81,6 +82,7 @@ static const Key keys[] = {
 	{ 0,       XF86XK_MonBrightnessDown, 	   spawn,  	   {.v = brightnessdown} },
 	{ MODKEY,  XK_Print, 			   spawn, 	   {.v = flameshot}},
 	{ MODKEY,  XK_f, 			   spawn, 	   {.v = firefox}},
+	{ MODKEY,  XK_e, 			   spawn, 	   {.v = ranger}},
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
