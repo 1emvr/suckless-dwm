@@ -41,9 +41,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ " ",      tile },    /* first entry is default */
+	{ " ",      NULL },    /* no layout function means floating behavior */
+	{ " ",      monocle },
 };
 
 /* key definitions */
@@ -71,6 +71,7 @@ static const char *brightnessdown[] = {"sudo", "xbacklight", "-dec", "5", NULL }
 
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 static const char *firefox[] = { "firefox", NULL };
+static const char *obsidian[] = { "Obsidian-1.3.7.AppImage" };
 static const char *ranger[] = { "urxvt", "-e", "ranger", NULL };
 
 static const Key keys[] = {
@@ -80,6 +81,7 @@ static const Key keys[] = {
 	{ 0,       XF86XK_AudioMute,         	   spawn, 	   {.v = mutevol} },
 	{ 0,       XF86XK_MonBrightnessUp,   	   spawn, 	   {.v = brightnessup} },
 	{ 0,       XF86XK_MonBrightnessDown, 	   spawn,  	   {.v = brightnessdown} },
+	{ MODKEY,  XK_o, 			   spawn, 	   {.v = obsidian}},
 	{ MODKEY,  XK_Print, 			   spawn, 	   {.v = flameshot}},
 	{ MODKEY,  XK_f, 			   spawn, 	   {.v = firefox}},
 	{ MODKEY,  XK_e, 			   spawn, 	   {.v = ranger}},
